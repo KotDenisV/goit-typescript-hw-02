@@ -7,14 +7,15 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
+import { UnsplashImage } from './App.types';
 
 function App() {
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [query, setQuery] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [images, setImages] = useState<UnsplashImage[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<UnsplashImage | null>(null);
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -33,7 +34,7 @@ function App() {
     fetchImage();
   }, [query, page]);
   
-  const handleSearchSubmit = (newQuery) => {
+  const handleSearchSubmit = (newQuery: string) => {
     setQuery(newQuery);
     setPage(1);
     setImages([]);
@@ -43,14 +44,14 @@ function App() {
     setPage(prevPage => prevPage + 1);
   };
 
-  const openModal = (image) => {
+  const openModal = (image: UnsplashImage) => {
     setSelectedImage(image);
   };
 
   const closeModal = () => {
     setSelectedImage(null);
   };
-
+  
   return (
     <>
       <SearchBar onSubmit={handleSearchSubmit} />
