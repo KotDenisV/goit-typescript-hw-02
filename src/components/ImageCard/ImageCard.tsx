@@ -1,6 +1,13 @@
+import React from 'react';
 import s from './ImageCard.module.css';
 
-function ImageCard({ imgUrl, alt, onClick }) {
+interface ImageCardProps {
+  imgUrl: string;
+  alt: string;
+  onClick: () => void;
+}
+
+const ImageCard: React.FC<ImageCardProps> = ({ imgUrl, alt, onClick }) => {
     
     return (
       <li className={s.listItem}>
