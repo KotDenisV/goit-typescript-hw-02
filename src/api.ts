@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UnsplashImage } from '../src/components/App/App.types';
 
 interface Params {
   query: string;
@@ -7,14 +8,14 @@ interface Params {
   client_id: string;
 }
 
-interface UnsplashImage {
-  id: string;
-  urls: {
-    small: string;
-    regular: string;
-  };
-  alt_description: string;
-}
+// interface UnsplashImage {
+//   id: string;
+//   urls: {
+//     small: string;
+//     regular: string;
+//   };
+//   alt_description: string;
+// }
 
 interface UnsplashResponse {
   total: number;

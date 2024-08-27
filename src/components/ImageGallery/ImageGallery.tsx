@@ -1,7 +1,15 @@
 import ImageCard from '../ImageCard/ImageCard';
 import s from './ImageGallery.module.css';
+import { UnsplashImage } from '../App/App.types';
+import React from 'react';
 
-function ImageGallery({ images, openModal }) {
+interface ImageGalleryProps {
+  images: UnsplashImage[];  
+  openModal: (image: UnsplashImage) => void;
+}
+
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images, openModal }) => {
     if (images.length === 0) return null;
  
     return (

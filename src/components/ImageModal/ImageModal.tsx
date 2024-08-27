@@ -1,8 +1,15 @@
 import Modal from 'react-modal';
 import s from './ImageModal.module.css';
+import React, { useEffect } from 'react';
+import { UnsplashImage } from '../App/App.types';
 
-function ImageModal({ image, onClose }) {
-  const handleKeyDown = (e) => {
+interface ImageModalProps {
+  image: UnsplashImage | null;
+  onClose: () => void;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({ image, onClose }) => {  
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === 'Escape') {
       onClose();
     }
@@ -13,11 +20,14 @@ function ImageModal({ image, onClose }) {
       isOpen={!!image}
       onRequestClose={onClose}
       className={s.modal}
-      overlayClassName={s.overlay}
-      onKeyDown={handleKeyDown}
+      overlayClassName={s.overlay}      
     >
-      <button className={s.closeButton} onClick={onClose}>Close</button>
-      <img src={image.urls.full} alt={image.alt_description} className={s.image} />
+      <div onKeyDown={handleKeyDown} tabIndex={0}>
+        <button className={s.closeButton} onClick={onClose}>Close</button>
+        {image && (
+          <img src={image.urls.full} alt={image.alt_description} className={s.image} />
+          )}
+      </div>
     </Modal>
   );
 }
